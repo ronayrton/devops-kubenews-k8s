@@ -1,0 +1,43 @@
+services:
+  # Serviço da aplicação Kube-News
+  app:
+    image: fabriciosveronez/kube-news-maratona:v1
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=kubedevnews
+      - DB_USERNAME=kubedevnews
+      - DB_PASSWORD=Pg#123
+      - DB_SSL_REQUIRE=false
+    depends_on:
+      - db
+    networks:
+      - kube-news-network
+
+  # Serviço do PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: kube-news-db
+    environment:
+      - POSTGRES_DB=kubedevnews
+      - POSTGRES_USER=kubedevnews
+      - POSTGRES_PASSWORD=Pg#123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - kube-news-network
+
+volumes:
+  postgres_data:
+
+networks:
+  kube-news-network:
+    driver: bridge
