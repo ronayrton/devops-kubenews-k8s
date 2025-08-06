@@ -61,7 +61,7 @@ Este repositório contém o **Lab do Dia 2** da Maratona DevOps + IA com [Fabric
 devops-kubenews-k8s/
 │
 ├── k8s/                         # Arquivos de definição Kubernetes (YAML)
-│   ├── deployment.yaml
+│   └── deployment.yaml
 │   
 │
 ├── src/                         # Código-fonte da aplicação
@@ -85,8 +85,22 @@ devops-kubenews-k8s/
 choco install kubernetes-cli
 kubectl version --client
 ```
+## Inicializando um cluster local com Minikube
+```bash
+minikube start --kubernetes-version=v1.29.0 --driver=docker --memory=4096 --cpus=2
+```
+Se der erro:
+```bash
+minikube stop
+minikube delete --all --purge
+```
 
-
+## 🚀 Deploy da Aplicação
+```bash
+kubectl apply -f deployment.yaml
+kubectl get all
+```
+-
 
 ## ☁️ Cluster na Digital Ocean
 - Criado cluster com:
