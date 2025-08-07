@@ -41,11 +41,12 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 ---
 
 ## 🧱 Componentes criados
-Objeto Kubernetes       Descrição
-Deployment              Gerencia os pods e réplicas da aplicação
-ReplicaSet              Garante que o número desejado de pods esteja sempre em execução
-Pod                     Unidade mínima de execução, onde o container roda
-Service                 Expõe os pods para acesso externo via LoadBalancer
+| Objeto Kubernetes | Função                           |
+| ----------------- | -------------------------------- |
+| Deployment        | Gerencia pods e réplicas         |
+| ReplicaSet        | Garante número constante de pods |
+| Pod               | Unidade mínima de execução       |
+| Service           | Expõe pods para acesso externo   |
 
 --- 
 
