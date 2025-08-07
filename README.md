@@ -1,79 +1,178 @@
-# maratona-devops-ia
+☸️ KubeNews com Kubernetes – Maratona DevOps + IA
+Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Veronez, onde aplicamos na prática o uso de Kubernetes para orquestrar a aplicação KubeNews, promovendo escalabilidade, resiliência e automação declarativa.
 
-Link para ter $ 200 na Digital Ocean
+---
 
-https://m.do.co/c/a939ecc60dfa
+## 📌 Objetivos
 
+- Criar e configurar um cluster Kubernetes local e na nuvem.
+- Implantar uma aplicação em containers com escalabilidade e resiliência.
+- Utilizar `kubectl` para gerenciar objetos do cluster.
+- Entender a arquitetura do Kubernetes.
+- Testar serviços do tipo LoadBalancer.
+- Simular cenários de falha e recuperação automática (resiliência).
+- Utilizar o Ask Gordon para análises do cluster.
 
-# Estrutura Inicial
+---
 
-```yaml
-name: CI-CD
+## ☸️ Arquitetura Kubernetes
 
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+### 🔹 Cluster (Conjunto de máquinas)
+- **Control Plane**
+  - API Server
+  - etcd
+  - Scheduler
+  - Controller Manager
+- **Worker Node**
+  - Kubelet
+  - Kube-Proxy
+  - Container Runtime (ContainerD, CRI-O)
 
-jobs:
-    CI:
-        runs-on: ubuntu-latest
-        steps:
-            - run: echo "Obter o código"
-            - run: echo "Executar o Docker Build"
-            - run: echo "Enviar a Imagem Docker para o Docker Hub"
+---
 
-    CD:
-        runs-on: ubuntu-latest
-        
-        steps:
-            - run: echo "Obter o código"
-            - run: echo "Configurar o Kubeconfig"
-            - run: echo "Executar o apply"
-```        
+## 🛠️ Tecnologias Utilizadas
 
+- Kubernetes (kubectl)
+- Digital Ocean (Kubernetes as a Service)
+- Minikube / Kind (para testes locais)
+- Chocolatey (Instalação no Windows)
+- Visual Studio Code
 
-# Grafana
+---
 
-Obter a senha do admin
-```        
-kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-```        
+## 🧱 Componentes criados
+Objeto Kubernetes       Descrição
+Deployment              Gerencia os pods e réplicas da aplicação
+ReplicaSet              Garante que o número desejado de pods esteja sempre em execução
+Pod                     Unidade mínima de execução, onde o container roda
+Service                 Expõe os pods para acesso externo via LoadBalancer
 
+--- 
 
-
-### ✅ Tarefas do Projeto
-
-Etapas                    
----------------------------
-1. Criar `namespace.yaml`    
-2. Criar `deployment.yaml`   
-3. Criar `service.yaml`      
-4. Testar local com Minikube 
-5. Criar pasta `docs/`       
-7. Escrever `README.md`      
-8. Print do dashboard        
-
-
-
-### 📦 Estrutura do Projeto devops-kubenews-k8s
-
+## 📦 Estrutura do Projeto devops-kubenews-k8s
 ```plaintext
 devops-kubenews-k8s/
 │
-├── k8s/
-│   ├── deployment.yaml
-│   ├── service.yaml
-│   └── namespace.yaml
+├── k8s/                         # Arquivos de definição Kubernetes (YAML)
+│   └── deployment.yaml
 │
-├── src/
-│   └── [aplicação em Node ou outro, como no dia 1]
+├── src/                         # Código-fonte da aplicação
 │
-├── Dockerfile
-├── .dockerignore
-├── README.md
-└── docs/
-    ├── apresentacao.pdf
-    └── imagens/
+├── README.md                    # Documentação detalhada
+└── docs/                        # Prints, apresentações, evidências
 ```
 
+---
+
+## 🚀 Executando localmente com Minikube
+```bash
+minikube start
+kubectl apply -f k8s/
+minikube service kube-news-service
+```
+Acesse via: http://localhost:PORTA
+
+
+## ☁️ Executando na nuvem com DigitalOcean
+
+1. Crie um cluster com pelo menos 2vCPU e 2GB RAM
+
+2. Baixe o arquivo .kube/config e salve em:
+  - Linux/macOS: ~/.kube/config
+  - Windows: C:\Users\SEU_USUARIO\.kube\config
+
+3. Deploy da Aplicação
+```bash
+kubectl apply -f deployment.yaml
+kubectl get all
+```
+---
+
+
+## 🧱 Manifesto deployment.yaml
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-news-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kube-news-app
+  template:
+    metadata:
+      labels:
+        app: kube-news-app
+    spec:
+      containers:
+      - name: kube-news
+        image: <sua-imagem>
+        ports:
+        - containerPort: 8080
+```
+
+## 🌐 Criando o Service
+- Expondo via LoadBalancer
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-news-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: kube-news-app
+```
+
+## 📈 Escalabilidade e Resiliência
+**Escalabilidade**
+- Aumentar número de réplicas:
+
+```yaml
+spec:
+  replicas: 10
+```
+
+**Resiliência**
+- Simular falha:
+
+```bash
+kubectl delete pod <nome-do-pod>
+```
+O pod será recriado automaticamente.
+
+
+## 🧪 Rollback de Deploy
+```bash
+kubectl rollout history deployment kube-news-deployment
+kubectl rollout undo deployment kube-news-deployment
+```
+
+## 🧹 Cleanup
+```bash
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
+```
+
+## ⚙️ Preparação do ambiente
+
+- Link: https://docs.google.com/document/d/1ZBJrW4iVvwncib3DIDNbGhY9ROZ38_jcQct1815kiX8/edit?usp=sharing
+
+## 🧪 Labs Extras (Planejados)
+- Deploy com imagem: fabricioverones/web-color
+
+- Integração com banco de dados PostgreSQL externo
+
+- Uso de PersistentVolumes (PV/PVC)
+
+
+## 📊 Análise do Cluster
+Usar Ask Gordon para analisar a segurança e performance do cluster Kubernetes.
+
+
+## ✍️ Autor
+https://www.linkedin.com/in/ronayrton-rocha-13a872a8/
