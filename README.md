@@ -145,7 +145,6 @@ kubectl delete pod <nome-do-pod>
 ```
 O pod será recriado automaticamente.
 
-
 ## 🧪 Rollback de Deploy
 ```bash
 kubectl rollout history deployment kube-news-deployment
