@@ -13,7 +13,7 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 - Simular cenários de falha e recuperação automática (resiliência).
 - Utilizar o Ask Gordon para análises do cluster.
 
----
+
 
 ##  Arquitetura Kubernetes
 
@@ -28,7 +28,7 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
   - Kube-Proxy
   - Container Runtime (ContainerD, CRI-O)
 
----
+
 
 ##  Tecnologias Utilizadas
 
@@ -38,7 +38,7 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 - Chocolatey (Instalação no Windows)
 - Visual Studio Code
 
----
+
 
 ##  Componentes criados
 | Objeto Kubernetes | Função                           |
@@ -48,7 +48,7 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 | Pod               | Unidade mínima de execução       |
 | Service           | Expõe pods para acesso externo   |
 
---- 
+ 
 
 ##  Estrutura do Projeto devops-kubenews-k8s
 ```plaintext
@@ -63,7 +63,7 @@ devops-kubenews-k8s/
 └── docs/                        # Prints, apresentações, evidências
 ```
 
----
+
 
 ##  Executando localmente com Minikube
 ```bash
@@ -87,7 +87,7 @@ Acesse via: http://localhost:PORTA
 kubectl apply -f deployment.yaml
 kubectl get all
 ```
----
+
 
 
 ##  Manifesto deployment.yaml
