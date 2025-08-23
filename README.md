@@ -1,9 +1,9 @@
-☸️ KubeNews com Kubernetes – Maratona DevOps + IA
+## ☸️ KubeNews com Kubernetes – Maratona DevOps + IA
 Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Veronez, onde aplicamos na prática o uso de Kubernetes para orquestrar a aplicação KubeNews, promovendo escalabilidade, resiliência e automação declarativa.
 
 ---
 
-## 📌 Objetivos
+##  Objetivos
 
 - Criar e configurar um cluster Kubernetes local e na nuvem.
 - Implantar uma aplicação em containers com escalabilidade e resiliência.
@@ -15,9 +15,9 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 
 ---
 
-## ☸️ Arquitetura Kubernetes
+##  Arquitetura Kubernetes
 
-### 🔹 Cluster (Conjunto de máquinas)
+###  Cluster (Conjunto de máquinas)
 - **Control Plane**
   - API Server
   - etcd
@@ -30,7 +30,7 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - Kubernetes (kubectl)
 - Digital Ocean (Kubernetes as a Service)
@@ -40,7 +40,7 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 
 ---
 
-## 🧱 Componentes criados
+##  Componentes criados
 | Objeto Kubernetes | Função                           |
 | ----------------- | -------------------------------- |
 | Deployment        | Gerencia pods e réplicas         |
@@ -50,7 +50,7 @@ Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Ve
 
 --- 
 
-## 📦 Estrutura do Projeto devops-kubenews-k8s
+##  Estrutura do Projeto devops-kubenews-k8s
 ```plaintext
 devops-kubenews-k8s/
 │
@@ -65,7 +65,7 @@ devops-kubenews-k8s/
 
 ---
 
-## 🚀 Executando localmente com Minikube
+##  Executando localmente com Minikube
 ```bash
 minikube start
 kubectl apply -f k8s/
@@ -74,7 +74,7 @@ minikube service kube-news-service
 Acesse via: http://localhost:PORTA
 
 
-## ☁️ Executando na nuvem com DigitalOcean
+##  Executando na nuvem com DigitalOcean
 
 1. Crie um cluster com pelo menos 2vCPU e 2GB RAM
 
@@ -90,7 +90,7 @@ kubectl get all
 ---
 
 
-## 🧱 Manifesto deployment.yaml
+##  Manifesto deployment.yaml
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -113,7 +113,7 @@ spec:
         - containerPort: 8080
 ```
 
-## 🌐 Criando o Service
+##  Criando o Service
 - Expondo via LoadBalancer
 ```yaml
 apiVersion: v1
@@ -129,7 +129,7 @@ spec:
     app: kube-news-app
 ```
 
-## 📈 Escalabilidade e Resiliência
+##  Escalabilidade e Resiliência
 **Escalabilidade**
 - Aumentar número de réplicas:
 
@@ -146,22 +146,22 @@ kubectl delete pod <nome-do-pod>
 ```
 O pod será recriado automaticamente.
 
-## 🧪 Rollback de Deploy
+##  Rollback de Deploy
 ```bash
 kubectl rollout history deployment kube-news-deployment
 kubectl rollout undo deployment kube-news-deployment
 ```
 
-## 🧹 Cleanup
+##  Cleanup
 ```bash
 kubectl delete -f deployment.yaml
 kubectl delete -f service.yaml
 ```
 
 
-## 📊 Análise do Cluster
+##  Análise do Cluster
 Usar Ask Gordon para analisar a segurança e performance do cluster Kubernetes.
 
 
-## ✍️ Autor
+##  Autor
 https://www.linkedin.com/in/ronayrton-rocha-13a872a8/
