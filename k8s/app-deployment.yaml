@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-news-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: kube-news-app
+  template:
+    metadata:
+      labels:
+        app: kube-news-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+    spec:
+      containers:
+      - name: kube-news-app
+        image: fabriciosveronez/kube-news-maratona
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_DATABASE
+          value: "kubedevnews"
+        - name: DB_USERNAME
+          value: "kubedevnews"
+        - name: DB_PASSWORD
+          value: "Pg#123"
+        - name: DB_SSL_REQUIRE
+          value: "false"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
