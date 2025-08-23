@@ -157,23 +157,23 @@ kubectl rollout undo deployment kube-news-deployment
 ### **Problemas Identificados e Soluções**
 
 #### **1. Erro de Conexão com Banco de Dados**
-**❌ Problema:**
+**Problema:**
 - Pods da aplicação em `CrashLoopBackOff`
 - Erro: `ConnectionRefusedError: connect ECONNREFUSED 10.99.225.23:5432`
 - Service do PostgreSQL apontando para IP incorreto
 
-**✅ Solução:**
+**Solução:**
 - Recriação do service do PostgreSQL com selector correto
 - Novo IP: `10.102.88.120:5432`
 - Aplicação consegue conectar no banco
 
 #### **2. Falta de Health Checks**
-**❌ Problema:**
+**Problema:**
 - Deployments sem `livenessProbe` e `readinessProbe`
 - Kubernetes não conseguia verificar saúde dos pods
 - Tráfego sendo roteado para pods não saudáveis
 
-**✅ Solução:**
+**Solução:**
 ```yaml
 # PostgreSQL Health Checks
 livenessProbe:
@@ -209,11 +209,11 @@ readinessProbe:
 ```
 
 #### **3. Falta de Persistência de Dados**
-**❌ Problema:**
+**Problema:**
 - PostgreSQL sem volume persistente
 - Dados perdidos a cada reinicialização do pod
 
-**✅ Solução:**
+**Solução:**
 ```yaml
 # PersistentVolumeClaim
 apiVersion: v1
@@ -238,17 +238,17 @@ volumes:
 ```
 
 #### **4. Selector Incorreto no Service**
-**❌ Problema:**
+**Problema:**
 - Service com selector `tier: backend` que não existia
 - Roteamento falhando para o PostgreSQL
 
-**✅ Solução:**
+**Solução:**
 ```yaml
 selector:
-  app: postgres  # ✅ Selector correto
+  app: postgres  #Selector correto
 ```
 
-### **📁 Arquivos de Deployment Separados**
+### **Arquivos de Deployment Separados**
 
 Para facilitar manutenção, criamos arquivos individuais:
 
@@ -257,7 +257,7 @@ Para facilitar manutenção, criamos arquivos individuais:
 - `k8s/postgres-service.yaml` - Service do PostgreSQL
 - `k8s/app-deployment.yaml` - Deployment da aplicação
 
-### **🔧 Comandos de Aplicação**
+### **Comandos de Aplicação**
 
 ```bash
 # Aplicar cada recurso separadamente
@@ -298,11 +298,11 @@ kubectl delete -f k8s/postgres-deployment.yaml
 kubectl delete -f k8s/postgres-service.yaml
 kubectl delete -f k8s/kube-news-service.yaml
 
-# Remover volume persistente (⚠️ ATENÇÃO: dados serão perdidos)
+# Remover volume persistente (ATENÇÃO: dados serão perdidos)
 kubectl delete -f k8s/postgres-pvc.yaml
 ```
 
-### **🔍 Verificação da Limpeza**
+### **Verificação da Limpeza**
 
 ```bash
 # Verificar se todos os recursos foram removidos
@@ -314,7 +314,7 @@ kubectl get pv
 kubectl get pods --all-namespaces
 ```
 
-### **⚡ Limpeza Rápida (Todos os Recursos)**
+### **Limpeza Rápida (Todos os Recursos)**
 
 ```bash
 # Remover todos os recursos de uma vez
@@ -326,7 +326,7 @@ kubectl delete service --all
 kubectl delete pvc --all
 ```
 
-### **🔄 Reset Completo do Cluster (Minikube)**
+### **Reset Completo do Cluster (Minikube)**
 
 ```bash
 # Parar o cluster
