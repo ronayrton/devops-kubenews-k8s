@@ -1,7 +1,7 @@
 ## ☸️ KubeNews com Kubernetes – Maratona DevOps + IA
 Este repositório contém o Lab do Dia 2 da Maratona DevOps + IA com Fabricio Veronez, onde aplicamos na prática o uso de Kubernetes para orquestrar a aplicação KubeNews, promovendo escalabilidade, resiliência e automação declarativa.
 
----
+
 
 ##  Objetivos
 
