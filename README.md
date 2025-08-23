@@ -158,17 +158,6 @@ kubectl delete -f deployment.yaml
 kubectl delete -f service.yaml
 ```
 
-## ⚙️ Preparação do ambiente
-
-- Link: https://docs.google.com/document/d/1ZBJrW4iVvwncib3DIDNbGhY9ROZ38_jcQct1815kiX8/edit?usp=sharing
-
-## 🧪 Labs Extras (Planejados)
-- Deploy com imagem: fabricioverones/web-color
-
-- Integração com banco de dados PostgreSQL externo
-
-- Uso de PersistentVolumes (PV/PVC)
-
 
 ## 📊 Análise do Cluster
 Usar Ask Gordon para analisar a segurança e performance do cluster Kubernetes.
