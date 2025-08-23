@@ -255,6 +255,7 @@ Para facilitar manutenção, criamos arquivos individuais:
 - `k8s/postgres-deployment.yaml` - Deployment do PostgreSQL
 - `k8s/postgres-pvc.yaml` - Volume persistente
 - `k8s/postgres-service.yaml` - Service do PostgreSQL
+- `k8s/kube-news-service.yaml` - Service da aplicação
 - `k8s/app-deployment.yaml` - Deployment da aplicação
 
 ### **Comandos de Aplicação**
@@ -264,6 +265,7 @@ Para facilitar manutenção, criamos arquivos individuais:
 kubectl apply -f k8s/postgres-pvc.yaml
 kubectl apply -f k8s/postgres-deployment.yaml
 kubectl apply -f k8s/postgres-service.yaml
+kubectl apply -f k8s/kube-news-service.yaml
 kubectl apply -f k8s/app-deployment.yaml
 Kubectl apply -f k8s
 ```
