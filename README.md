@@ -154,7 +154,7 @@ kubectl rollout undo deployment kube-news-deployment
 
 ##  Melhorias do Ambiente - Correções e Otimizações
 
-### ** Problemas Identificados e Soluções**
+### **Problemas Identificados e Soluções**
 
 #### **1. Erro de Conexão com Banco de Dados**
 **❌ Problema:**
