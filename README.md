@@ -56,9 +56,7 @@ devops-kubenews-k8s/
 │
 ├── k8s/                         # Arquivos de definição Kubernetes (YAML)
 │   └── deployment.yaml
-│
 ├── src/                         # Código-fonte da aplicação
-│
 ├── README.md                    # Documentação detalhada
 └── docs/                        # Prints, apresentações, evidências
 ```
