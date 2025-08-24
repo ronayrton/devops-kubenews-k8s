@@ -67,8 +67,15 @@ devops-kubenews-k8s/
 
 ##  Executando localmente com Minikube
 ```bash
-minikube start
-kubectl apply -f k8s/
+# Inicia um cluster Kubernetes local usando o Minikube
+minikube start  
+
+# Aplica todos os manifests (YAML) que estão dentro da pasta "k8s/"
+# Geralmente contém Deployments, Services, ConfigMaps etc.
+kubectl apply -f k8s/  
+
+# Exibe a URL de acesso externo para o Service chamado "kube-news-service"
+# O Minikube cria um túnel local para acessar o serviço rodando no cluster
 minikube service kube-news-service
 ```
 Acesse via: http://localhost:PORTA
