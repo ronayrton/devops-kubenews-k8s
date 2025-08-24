@@ -58,7 +58,7 @@ devops-kubenews-k8s/
 │   └── deployment.yaml
 ├── src/                         # Código-fonte da aplicação
 ├── README.md                    # Documentação detalhada
-└── docs/                        # Prints, apresentações, evidências
+
 ```
 
 
